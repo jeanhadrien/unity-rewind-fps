@@ -2,7 +2,6 @@
 
 Just a simple fps with a rewind function.
 
-![](https://i.ibb.co/zRr8pfV/Screenshot-1.png)
 ![](https://i.ibb.co/85V0zSk/Screenshot-2.png)
 
 ### Scripts 
@@ -34,3 +33,5 @@ Recoil script : https://www.youtube.com/watch?v=p9t044U4i5E
 ```
 
 TP2 Unity Janvier 2020  - Jean-Hadrien DAMAY
+
+![](https://i.ibb.co/zRr8pfV/Screenshot-1.png)
