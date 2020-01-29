@@ -2,6 +2,9 @@
 
 Just a simple fps with a rewind function.
 
+![](https://i.ibb.co/zRr8pfV/Screenshot-1.png)
+![](https://i.ibb.co/85V0zSk/Screenshot-2.png)
+
 ### Scripts 
 
 - **ItsRewindTime** : When the user right clicks, it rewinds associated objects positions and rotations for up to 15 seconds.
