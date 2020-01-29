@@ -29,3 +29,5 @@ Notice how the green character isn't affected by our shooting. This is because w
 AK-47 model : http://devassets.com/assets/modern-weapons/
 Recoil script : https://www.youtube.com/watch?v=p9t044U4i5E
 ```
+
+TP2 Unity Janvier 2020  - Jean-Hadrien DAMAY
