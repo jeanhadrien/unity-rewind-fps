@@ -1,5 +1,6 @@
 ﻿using System.Collections;
 using System.Collections.Generic;
+using TMPro;
 using UnityEngine;
 using UnityEngine.Serialization;
 
@@ -19,8 +20,15 @@ public class myGun : MonoBehaviour
     private LayerMask _enemyLayer;       // layer containing enemies
     private RaycastHit _enemyHit;        // contains the object hit by raycast
 
+    private int ammo;
+    private int ammoMax = 30;
+    private TextMeshProUGUI ammoText;
+
     private void Start()
     {
+        ammo = ammoMax;
+        ammoText = GameObject.Find("Ammo").GetComponent<TextMeshProUGUI>();
+        ammoText.text = $"{ammo}/{ammoMax}";
         _barrelTransform = GameObject.Find("Tracers").transform;
         _recoil = GameObject.Find("Weapon").GetComponent<Recoil>();
         _enemyLayer = LayerMask.GetMask("Enemies");
@@ -29,14 +37,22 @@ public class myGun : MonoBehaviour
 
     }
     
+    
     private void Update()
     {
         // Update time since last bullet passes...
         _timeSinceLastFire += Time.fixedDeltaTime;
+
+        if (ammo == 0)
+        {
+            StartCoroutine(Reload());
+        }
         
         // If user wants to fire bullet and enough time has passed since last bullet, then proceed ... 
-        if (Input.GetMouseButton(0) && _timeSinceLastFire >= fireRate)
+        if (Input.GetMouseButton(0) && _timeSinceLastFire >= fireRate && ammo>0)
         {
+            ammo -= 1;
+            ammoText.text = $"{ammo}/{ammoMax}";
             // ... to reset time counter
             _timeSinceLastFire = 0f;
             
@@ -50,9 +66,20 @@ public class myGun : MonoBehaviour
                 Mathf.Infinity, _enemyLayer))
             {
                 StartCoroutine(nameof(ApplyBulletForce), _enemyHit);
+                EnemyBehaviour script = _enemyHit.transform.root.gameObject.GetComponent<EnemyBehaviour>();
+                if (script)
+                {
+                    script.Kill();
+                }
+                
             }
         }
 
+    }
+
+    private IEnumerator Reload()
+    {
+        yield return null;
     }
     
     private IEnumerator ApplyBulletForce(RaycastHit myHitObj)
